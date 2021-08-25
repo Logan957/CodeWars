@@ -60,6 +60,26 @@ namespace CodeWars
             {
                 return a + b > c && a + c > b && c + b > a;
             }
+
+            //7 kyu You're a square!
+            //Given an integral number, determine if it's a square number:
+
+            //Console.WriteLine(IsSquare(25));
+
+            static bool IsSquare(int n)
+            {
+                for (int i = 0; i * i <= n; i++)
+                {
+                    if (i * i == n)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+
+                //оказывается есть Math.Sqrt(n)
+            }
         }
     }
 }
