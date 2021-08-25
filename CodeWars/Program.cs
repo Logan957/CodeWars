@@ -41,10 +41,24 @@ namespace CodeWars
 
                 foreach (int key in keyValues.Keys)
                 {
-                    result = result.Append(keyValues[key]+ " ");
+                    result = result.Append(keyValues[key] + " ");
                 }
 
                 return result.ToString().Trim();
+            }
+
+            /*
+            7kyu Is this a triangle?
+
+            Implement a method that accepts 3 integer values a, b, c.
+            The method should return true if a triangle can be built with the sides of given length and false in any other case.
+            (In this case, all triangles must have surface greater than 0 to be accepted). */
+
+            //Console.WriteLine(IsTriangle(5, 7, 10));
+
+            static bool IsTriangle(int a, int b, int c)
+            {
+                return a + b > c && a + c > b && c + b > a;
             }
         }
     }
