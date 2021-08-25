@@ -62,6 +62,7 @@ namespace CodeWars
             }
 
             //7 kyu You're a square!
+
             //Given an integral number, determine if it's a square number:
 
             //Console.WriteLine(IsSquare(25));
@@ -79,6 +80,56 @@ namespace CodeWars
                 return false;
 
                 //оказывается есть Math.Sqrt(n)
+            }
+
+            //6 kyu Valid Braces
+
+            //What is considered Valid ?
+            //A string of braces is considered valid if all braces are matched with the correct brace.
+
+            //Console.WriteLine(validBraces("(((((("));
+            static bool validBraces(String braces)
+            {
+                var ch = braces.ToCharArray();
+
+                if (ch[0] != '(' && ch[0] != '[' && ch[0] != '{')
+                {
+                    return false;
+                }
+
+                if (ch[ch.Length - 1] != ')' && ch[ch.Length - 1] != '}' && ch[ch.Length - 1] != ']')
+                {
+                    return false;
+                }
+
+                for (int a = 0; a < ch.Length - 1; a++)
+                {
+                    switch (ch[a])
+                    {
+                        case '(':
+                            if (ch[a + 1] == '}' || ch[a + 1] == ']')
+                            { 
+                                return false;
+                            } 
+                            break;
+                        case '{':
+                            if (ch[a + 1] == ')' || ch[a + 1] == ']')
+                            {
+                                return false;
+                            }
+                            break;
+                        case '[':
+                            if (ch[a + 1] == ')' || ch[a + 1] == '}')
+                            {
+                                return false;
+                            }
+                            break;
+                    }
+                }
+                return true;
+
+                // Через Replace, очень просто и красиво решается
+
             }
         }
     }
