@@ -108,9 +108,9 @@ namespace CodeWars
                     {
                         case '(':
                             if (ch[a + 1] == '}' || ch[a + 1] == ']')
-                            { 
+                            {
                                 return false;
-                            } 
+                            }
                             break;
                         case '{':
                             if (ch[a + 1] == ')' || ch[a + 1] == ']')
@@ -130,6 +130,74 @@ namespace CodeWars
 
                 // Через Replace, очень просто и красиво решается
 
+            }
+
+            /*
+             6 kyu Title Case
+            A string is considered to be in title case if each word in the string is either(a) capitalised (that is, only the first letter of the word is in upper case) 
+            or(b) considered to be an exception and put entirely into lower case unless it is the first word, which is always capitalised.
+            
+            Write a function that will convert a string into title case, 
+            given an optional list of exceptions(minor words).
+            
+            The list of minor words will be given as a string with each word separated by a space.
+            Your function should ignore the case of the minor words string --it should behave in the same way even if the case of the minor word string is changed.*/
+
+            Console.WriteLine(TitleCase("ab", null));
+
+            static string TitleCase(string title, string minorWords = "")
+            {
+                string[] splitTitle = title.Split(" ");
+
+                if (minorWords == null)
+                {
+                    minorWords = "";
+                }
+                string[] splitMinorWords = minorWords.Split(" ");
+                bool wasFirstWord = false;
+
+                List<string> newTitle = new List<string>();
+
+                foreach (string word in splitTitle)
+                {
+                    if (!string.IsNullOrEmpty(word))
+                    {
+                        bool isMinorWord = false;
+
+                        if (!wasFirstWord)
+                        {
+                            if (word == splitTitle[0])
+                            {
+                                string firstWord = word.ToLower();
+                                newTitle.Add(Char.ToUpper(firstWord[0]) + firstWord.Substring(1));
+                                wasFirstWord = true;
+
+                                continue;
+                            }
+                        }
+
+                        foreach (string minorWord in splitMinorWords)
+                        {
+                            if (word.ToLower() == minorWord.ToLower())
+                            {
+                                newTitle.Add(word.ToLower());
+                                isMinorWord = true;
+
+                                break;
+                            }
+                        }
+
+                        if (!isMinorWord)
+                        {
+                            string newWord = word.ToLower();
+                            newTitle.Add(Char.ToUpper(newWord[0]) + newWord.Substring(1));
+                        }
+                    }
+                }
+
+                return string.Join(" ", newTitle);
+
+                //Очень плохое решение
             }
         }
     }
