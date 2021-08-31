@@ -269,6 +269,64 @@ namespace CodeWars
 
                 return (result == 0 && n > 0) ? 9 : Convert.ToInt32(result);
             }
+
+            //5 kyu Maximum subarray sum
+            //The maximum sum subarray problem consists in finding the maximum sum of a contiguous subsequence in an array or list of integers:
+            //Easy case is when the list is made up of only positive numbers and the maximum sum is the sum of the whole array.
+            //If the list is made up of only negative numbers, return 0 instead.
+
+            Console.WriteLine(MaxSequence(new int[] {-4, 21, 0, 2, -29, -10, 17, 15, -24, 23, 19,
+-16, -25, 16, 10, 28, 15, -7, -7, -14, 4, 7,
+-22, -15, -19, 27, -8, -7, -19, -20, -12, 23,
+25, 0, -22, -8, -26, 2, 14, 26, 0, 9, -19, -8,
+-20, 21, 10, 19, 14, 14 }));
+
+            static int MaxSequence(int[] arr)
+            {
+                if (arr == null || arr.Length == 0 || arr.Max() <= 0)
+                {
+                    return 0;
+                }
+                int maxResult = 0;
+
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] > 0)
+                    {
+                        int maxLeftResult = 0;
+                        int maxRightResult = 0;
+                        int leftSum = 0;
+                        int rightSum = 0;
+
+                        for (int j = i - 1; j >= 0; j--)
+                        {
+                            leftSum += arr[j];
+
+                            if (leftSum > maxLeftResult)
+                            {
+                                maxLeftResult = leftSum;
+                            }
+                        }
+
+                        for (int j = i + 1; j < arr.Length; j++)
+                        {
+                            rightSum += arr[j];
+
+                            if (rightSum > maxRightResult)
+                            {
+                                maxRightResult = rightSum;
+                            }
+                        }
+
+                        if (arr[i] + maxLeftResult + maxRightResult > maxResult)
+                        {
+                            maxResult = arr[i] + maxLeftResult + maxRightResult;
+                        }
+                    }
+                }
+
+                return maxResult;
+            }
         }
     }
 }
