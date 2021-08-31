@@ -275,11 +275,11 @@ namespace CodeWars
             //Easy case is when the list is made up of only positive numbers and the maximum sum is the sum of the whole array.
             //If the list is made up of only negative numbers, return 0 instead.
 
-            Console.WriteLine(MaxSequence(new int[] {-4, 21, 0, 2, -29, -10, 17, 15, -24, 23, 19,
--16, -25, 16, 10, 28, 15, -7, -7, -14, 4, 7,
--22, -15, -19, 27, -8, -7, -19, -20, -12, 23,
-25, 0, -22, -8, -26, 2, 14, 26, 0, 9, -19, -8,
--20, 21, 10, 19, 14, 14 }));
+            /*Console.WriteLine(MaxSequence(new int[] {-4, 21, 0, 2, -29, -10, 17, 15, -24, 23, 19,
+                                                       -16, -25, 16, 10, 28, 15, -7, -7, -14, 4, 7,
+                                                       -22, -15, -19, 27, -8, -7, -19, -20, -12, 23,
+                                                        25, 0, -22, -8, -26, 2, 14, 26, 0, 9, -19, -8,
+                                                       -20, 21, 10, 19, 14, 14 }));*/
 
             static int MaxSequence(int[] arr)
             {
@@ -326,6 +326,35 @@ namespace CodeWars
                 }
 
                 return maxResult;
+
+                //Cложность O(n)^2 - плохо, можно было линейно решить
+            }
+
+            //5 kyu Moving Zeros To The End
+            //Write an algorithm that takes an array and moves all of the zeros to the end, preserving the order of the other elements.
+
+            Console.WriteLine(MoveZeroes(new int[] { 1, 2, 0, 1, 0, 1, 0, 3, 0, 1 }));
+
+            static int[] MoveZeroes(int[] arr)
+            {
+                List<int> numbers = new List<int>();
+
+                int count = arr.Where(x => x == 0).Count();
+
+                foreach (int number in arr)
+                {
+                    if (number != 0)
+                    {
+                        numbers.Add(number);
+                    }
+                }
+
+                for (int i = 1; i <= count; i++)
+                {
+                    numbers.Add(0);
+                }
+
+                return numbers.ToArray();
             }
         }
     }
