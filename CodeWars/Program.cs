@@ -205,7 +205,9 @@ namespace CodeWars
             //You will always be given an array with five six-sided dice values.
             //A single die can only be counted once in each roll.
             //For example, a given "5" can only count as part of a triplet(contributing to the 500 points) or as a single 50 points, but not both in the same roll.
-            Console.WriteLine(Score(new int[] { 2, 4, 4, 5, 4 }));
+
+            //Console.WriteLine(Score(new int[] { 2, 4, 4, 5, 4 }));
+
             static int Score(int[] dice)
             {
                 Dictionary<int, int> countNumbers = new Dictionary<int, int>();
@@ -251,6 +253,21 @@ namespace CodeWars
 
                 return sum;
                 // Нормальное решение, но через LINQ очень красиво решается 
+            }
+
+            //6 kyu Sum of Digits / Digital Root
+            //Digital root is the recursive sum of all the digits in a number.
+            //Given n, take the sum of the digits of n.
+            //If that value has more than one digit, continue reducing in this way until a single-digit number is produced.
+            //The input will be a non-negative integer.
+
+            //Console.WriteLine(DigitalRoot(493193));
+
+            static int DigitalRoot(long n)
+            {
+                long result = n % 9;
+
+                return (result == 0 && n > 0) ? 9 : Convert.ToInt32(result);
             }
         }
     }
